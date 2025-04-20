@@ -34,9 +34,27 @@ public class Auto {
     }
 
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            saltando = true;
+        if (e.getKeyCode() == KeyEvent.VK_UP) {
+            y_auxiliar = -5;
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            y_auxiliar = 5;
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            x_auxiliar = 5;
+        }
 
+        else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            x_auxiliar = -5;
+        }
+    }
+
+    public void keyReleased(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN) {
+            y_auxiliar = 0;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_LEFT) {
+            x_auxiliar = 0;
         }
     }
 
@@ -59,33 +77,18 @@ public class Auto {
     }
 
 
+
+
     public void mover() {
-        //si el personaje no sale de la pantalla
-        if (x_inicial + x_auxiliar > 0 && x_inicial + x_auxiliar < jueguito.getWidth() - anchoPersonaje) {
-            x_inicial += x_auxiliar;
+        int nuevaY = y_inicial + y_auxiliar;
+        int nuevaX = x_inicial + x_auxiliar;
+        // No permitir que suba por encima del margen superior (40 píxeles)
+        // Ni que baje por debajo del fondo (alto ventana - alto personaje)
+        if (nuevaY >= 40 && nuevaY <= (jueguito.getHeight() - altoPersonaje)) {
+            y_inicial = nuevaY;
         }
-        if (saltando) {
-            if (y_inicial == 270) { //si el auto esta en el suelo
-                sube = true;
-                y_auxiliar = -5;
-                baja = false;
-            }
-            if (y_inicial == 110) { //si el auto llego al limite del salto
-                baja = true;
-                y_auxiliar = 5;
-                sube = false;
-            }
-
-            if (sube) {
-                y_inicial += y_auxiliar;
-            }
-
-            if (baja) {
-                y_inicial += y_auxiliar;
-                if (y_inicial == 270) {
-                    saltando = false;
-                }
-            }
+        if (nuevaX >= 5 && nuevaX <= (jueguito.getWidth() - anchoPersonaje)) {
+            x_inicial = nuevaX;
         }
     }
 }

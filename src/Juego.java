@@ -51,26 +51,19 @@ public class Juego extends JPanel {
 
         addKeyListener(new KeyListener() {
             @Override
-            public void keyTyped(KeyEvent e) {
-            }
+            public void keyTyped(KeyEvent e) {}
 
             @Override
             public void keyPressed(KeyEvent e) {
-                //el salto se activa cuando se presiona la tecla espacio
-                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    if (sonidoSalto != null) {
-                        sonidoSalto.setFramePosition(0); // ← esto reinicia el audio al inicio
-                        sonidoSalto.start();
-                    }
-                    auto.keyPressed(e);
-                }
+                auto.keyPressed(e);
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-
+                auto.keyReleased(e);
             }
         });
+
         setFocusable(true);
 
     }

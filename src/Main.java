@@ -20,9 +20,9 @@ public class Main {
         ventana.setVisible(true);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        if (Juego.BSO1 != null) {
-            Juego.BSO1.start();
-        }
+//        if (Juego.BSO1 != null) {
+//            Juego.BSO1.start();
+//        }
 
         while (true) {
 
@@ -54,12 +54,14 @@ public class Main {
 
     public static void reiniciarValores() {
         Juego.juegoFinalizado=false;
-        Obstaculo.x_auxiliar=-2;
+        Obstaculo.x_auxiliar=-5;
         Juego.puntos=0;
         Juego.nivel=0;
         Juego.vidas=3;
         reiniciarJuego=-1;
         Obstaculo.x_inicial=1300;
+        Auto.x_inicial=50;
+        Auto.y_inicial=150;
 
 
     }
